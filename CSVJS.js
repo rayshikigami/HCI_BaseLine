@@ -108,7 +108,7 @@ function pushDiv(data) {
 
 			<!--ko if: hasImages--><!--/ko-->
 
-							<p data-bind="html: content4Html">${data.留言內容}</p>
+							<p style="text-align: left;" data-bind="html: content4Html">${data.留言內容}</p>
 				<!-- ko foreach: {data: links, as: 'rdqLink'} --><!-- /ko -->
 			
 
@@ -164,7 +164,7 @@ function pushDiv2(data) {
 
                     <!--ko if: hasImages--><!--/ko-->
 
-                      <p data-bind="html: content4Html">${data.留言內容}</p>
+                      <p style="text-align: left;" data-bind="html: content4Html">${data.留言內容}</p>
                       <!-- ko foreach: {data: links, as: 'rdqLink'} --><!-- /ko -->
                     
 
