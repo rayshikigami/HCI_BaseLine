@@ -254,6 +254,7 @@ var disagreeArray = [];
 /*
 const fileInput = document.getElementById('fileInput');
 fileInput.addEventListener('change', readCSV);*/
+
 fetchAndReadCSV('討論區留言.xlsx');
 
 console.log("checkpoint");
