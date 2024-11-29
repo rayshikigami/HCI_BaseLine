@@ -33627,9 +33627,12 @@
           data-bind="overlayLoadmask: {viewId: &#39;firstLoadmaskView&#39;, fadeInOut : true}" style="display: none;">
         </div>
         <div class="w-100 message-board-stop flex-center mt-3 mb-2">
-          這個主題暫停討論
+          <button id="time_btn1" class="timeline-btn">time line 1</button>
+          <button id="time_btn2" class="timeline-btn">time line 2</button>
+          <button id="time_btn3" class="timeline-btn">time line 3</button>
+          <button id="time_btn4" class="timeline-btn">time line 4</button>
         </div>
-
+<!--SLOT START-->
         <div class="message-title-btn" data-bind="visible: showAreaHeader" style="">
           <ul class="nav nav-tabs row w-100" role="tablist">
             <li class="nav-item col-6 pl-0">
@@ -33742,7 +33745,7 @@
         </div>
 
       </div>
-
+<!--SLOT END-->
       <script src="CSVJS.js"></script>
       <script type="text/html" id="templateMessageBox">
   </script>
