@@ -1,6 +1,6 @@
 var timestampFrontLine = "2000-05-03 00:25:25"
 var timestampBackLine = "2099-05-03 00:25:25"
-
+console.log("0.1.35");
 function readCSV(event) {
 
   const file = event.target.files[0];
@@ -112,7 +112,7 @@ function pushDiv(data) {
 				</div>
 				<span class="text-gray message-date">
 					<span class="mr-3" data-bind="html: sideFloorNumberText">#${data.序號}&nbsp;</span>
-					<!--ko text: beforeNow-->${data.留言時間}<!--/ko-->
+					<!--ko text: beforeNow-->${data.timestamp}<!--/ko-->
 				</span>
 			</div>
 
@@ -168,7 +168,7 @@ function pushDiv2(data) {
                       </div>
                       <span class="text-gray message-date">
                         <span class="mr-3" data-bind="html: sideFloorNumberText">#${data.序號}&nbsp;</span>
-                        <!--ko text: beforeNow-->${data.留言時間}<!--/ko-->
+                        <!--ko text: beforeNow-->${data.timestamp}<!--/ko-->
                       </span>
                     </div>
 
