@@ -1,3 +1,6 @@
+var timestampFrontLine = "2000-05-03 00:25:25"
+var timestampBackLine = "2099-05-03 00:25:25"
+console.log("0.1.35");
 function readCSV(event) {
 
   const file = event.target.files[0];
@@ -57,7 +60,7 @@ function fetchAndReadCSV(fileUrl) {
 
       console.log('解析後的 JSON 資料:', jsonData);
 
-      
+
       sortSerializedDatesDescending(jsonData);
       // 自訂處理邏輯
       handleData(jsonData);
@@ -72,10 +75,17 @@ function handleData(jsonData) {
 
   // 遍歷 jsonData，根據條件將資料分到不同的陣列
   jsonData.forEach(item => {
-    if (item["贊成論點/其他想法"] === "贊成論點") {
-      agreeArray.push(item);
-    } else {
-      disagreeArray.push(item);
+    console.log(item["timestamp"]);
+    console.log(typeof(item["timestamp"]));
+
+    console.log(timestampFrontLine);
+    console.log(item["timestamp"] > timestampFrontLine);
+    if (item["timestamp"] > timestampFrontLine && item["timestamp"] < timestampBackLine) {
+      if (item["贊成論點/其他想法"] === "贊成論點") {
+        agreeArray.push(item);
+      } else {
+        disagreeArray.push(item);
+      }
     }
   }); console.log('贊成陣列:', agreeArray);
   console.log('反對陣列:', disagreeArray);
@@ -102,7 +112,7 @@ function pushDiv(data) {
 				</div>
 				<span class="text-gray message-date">
 					<span class="mr-3" data-bind="html: sideFloorNumberText">#${data.序號}&nbsp;</span>
-					<!--ko text: beforeNow-->${data.留言時間}<!--/ko-->
+					<!--ko text: beforeNow-->${data.timestamp}<!--/ko-->
 				</span>
 			</div>
 
@@ -158,7 +168,7 @@ function pushDiv2(data) {
                       </div>
                       <span class="text-gray message-date">
                         <span class="mr-3" data-bind="html: sideFloorNumberText">#${data.序號}&nbsp;</span>
-                        <!--ko text: beforeNow-->${data.留言時間}<!--/ko-->
+                        <!--ko text: beforeNow-->${data.timestamp}<!--/ko-->
                       </span>
                     </div>
 
@@ -255,12 +265,14 @@ var disagreeArray = [];
 const fileInput = document.getElementById('fileInput');
 fileInput.addEventListener('change', readCSV);*/
 
-fetchAndReadCSV('討論區留言.xlsx');
+//fetchAndReadCSV('討論區留言.xlsx');
 
 console.log("checkpoint");
 
 const buttons2 = document.querySelectorAll('.sort-btnT');
 const buttons = document.querySelectorAll('.sort-btn');
+const timelinebuttons = document.querySelectorAll('.timeline-btn');
+
 
 buttons.forEach(button => {
   button.addEventListener('click', () => {
@@ -312,6 +324,45 @@ buttons2.forEach(button => {
       case 'stbtn6':
         console.log("T6");
         sortSerializedDatesAscending(disagreeArray);
+        // 執行自訂排序邏輯
+        break;
+    }
+    renew();
+  });
+});
+
+timelinebuttons.forEach(button => {
+  button.addEventListener('click', () => {
+    // 移除所有按鈕的黃色背景
+    timelinebuttons.forEach(btn => btn.classList.remove('active'));
+    console.log(button.id);
+    // 為被點擊的按鈕添加黃色背景
+    button.classList.add('active');
+
+    // 根據按鈕的 ID 執行不同的操作
+    switch (button.id) {
+      case 'time_btn1':
+        timestampFrontLine = "2000-05-03 00:25:25"
+        timestampBackLine = "2024-07-09 00:25:25"
+        fetchAndReadCSV('討論區留言.xlsx');
+        break;
+      case 'time_btn2':
+        timestampFrontLine = "2024-07-09 00:25:25"
+        timestampBackLine = "2024-08-19 00:25:25"
+        fetchAndReadCSV('討論區留言.xlsx');
+        // 執行其他排序邏輯
+        break;
+      case 'time_btn3':
+        timestampFrontLine = "2024-08-19 00:25:25"
+        timestampBackLine = "2024-09-16 00:25:25"
+        fetchAndReadCSV('討論區留言.xlsx');
+        // 執行自訂排序邏輯
+        break;
+
+      case 'time_btn4':
+        timestampFrontLine = "2024-09-16 00:25:25"
+        timestampBackLine = "2099-09-16 00:25:25"
+        fetchAndReadCSV('討論區留言.xlsx');
         // 執行自訂排序邏輯
         break;
     }
